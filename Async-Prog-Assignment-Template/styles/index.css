@@ -1,0 +1,107 @@
+
+#container{
+ 
+    border: 1px rgb(18, 1, 1) solid
+   }
+   
+   #cont{
+    display: flex;
+    justify-content: end;
+   
+   }
+   #cont>div{
+   margin-left: 50px; 
+   
+   margin-right: 20px;
+   }
+   #cont>div>a{
+   color: gray;
+   
+   
+   }
+   h1{
+    color: goldenrod;
+    text-align: center;
+   
+   
+     }
+
+     /* new */
+    
+     #slideshow{
+            height:400px;
+            width: 750px;
+            border:  7px goldenrod solid;
+            margin: auto;
+           
+
+
+
+     }
+
+     #slideshow>img{
+          height: 400px;
+          width: 750px;
+
+
+     }   
+
+      
+
+
+
+
+     #movies{
+        width: 750px;
+         margin: auto;
+        /* border: 1px red solid; */
+        
+         display: grid;
+         grid-template-columns: repeat(3,auto);
+         grid-template-rows: repeat(3,auto);
+         /* gap: 20px; */
+         margin-top: 80px;
+
+
+     }
+
+     
+     #movies>div{
+        margin: auto;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        margin-top: 20px;
+        border-radius: 10px;
+
+     }
+     #movies img{
+       width:200px ;
+       height: 270px;
+       border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+
+     }
+     #movies>div p{
+        line-height: 3px;
+         color: gray;
+         margin-left: 10px;
+
+     }
+     #sort-buttons{
+         
+          display: flex;
+          margin: auto;
+          /* border: 1px red solid; */
+          margin-top: 50px;
+          justify-content: space-evenly;
+
+     }
+
+     #sort-buttons button{
+           width: 200px;
+          height: 50px;
+          color: white;
+          background-color: goldenrod;
+          border: none;
+          border-radius: 10px;
+     }
+

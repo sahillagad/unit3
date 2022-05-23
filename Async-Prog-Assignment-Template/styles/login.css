@@ -1,0 +1,47 @@
+#container{
+     
+    border: 1px rgb(18, 1, 1) solid
+}
+
+  #cont{
+    display: flex;
+    justify-content: end;
+
+  }
+ #cont>div{
+   margin-left: 50px; 
+
+   margin-right: 20px;
+}
+#cont>div>a{
+   color: gray;
+   
+
+}
+
+form{
+    width: 230px;
+    
+    margin: auto;
+    background-color: aqua;
+    color: white;
+    text-align: center;
+    
+    }
+    
+ h1{
+       margin-bottom: 4px;
+    }
+    
+input{
+    height: 27px;
+    width: 200px;
+    
+    }
+    
+#submit{
+     margin-top: 30px;
+     margin-bottom: 30px;
+    }
+    
+    
