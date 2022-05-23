@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+#navbar{
+display: flex;
+height: 30px;
+font-size: larger;
+justify-content: end;
+align-items: center;
+
+border: 1px gray solid;
+
+
+
+}      
+#navbar>div{
+    margin-right: 20px;
+    margin-left: 60px;
+    color: gray;
+}
+a{
+color: gray;
+}
+
+#container{
+width: 50%;
+height: auto;
+border: 1px green solid;
+margin: auto;
+
+}
+#container>div>div{
+    margin-left: 100px;
+}
+
+#container>div{
+    border: 1px red solid;
+    display: flex;
+}
+
+#container>div>img{
+    width: 200px;
+    height: 150px;
+}
+
+    </style>
+</head>
+<body>
+        
+    <div id="navbar">
+         <div><a href=home1.html> home</a></div>
+         <div><a href="dashboard.html">Dasboard</a> </div>
+         <div><a href="remove.html">Remove</a> </div>
+         <div id="batch"></div>
+         <div><p id="demo"></p></div>
+   </div>
+
+
+   <div id="container"></div>
+</body>
+</html>
+<script>
+
+const d = new Date();
+document.getElementById("demo").innerHTML=d.toDateString() ;
+
+var data =JSON.parse(localStorage.getItem("detail"))||[]
+console.log(data)
+
+
+function calculate(){
+
+    var data =JSON.parse(localStorage.getItem("detail"))||[]
+      
+var obj={}
+
+for(var i=0;i<data.length;i=i+1){
+
+if(!obj[data[i].batch]){
+
+
+    obj[data[i].batch]=1
+}
+
+}
+
+for(var i=0;i<data.length;i=i+1){
+
+obj[data[i].batch]++
+
+}
+
+var bag=""
+for(var k in obj){
+
+bag=bag+(k+"-"+" "+obj[k])+"  "
+
+}
+
+
+console.log(bag)
+document.querySelector("#batch").innerText= bag
+
+}
+
+
+
+
+calculate()
+
+
+
+displaydata(data)
+
+function  displaydata(data){
+data.forEach(function(ele,ind){
+    
+var divtag=document.createElement("div")
+document.querySelector("#container").append(divtag)
+
+
+
+var imgtag=document.createElement("img")
+imgtag.setAttribute("src",ele.image)
+divtag.append(imgtag)
+
+
+var divtag1=document.createElement("div")
+divtag.append(divtag1)
+
+var ptag=document.createElement("p")
+ptag.innerText="Name :"+" "+ele.name
+divtag1.append(ptag)
+
+
+var ptag1=document.createElement("p")
+ptag1.innerText= "COURSE :"+" "+ele.course
+divtag1.append(ptag1)
+
+
+
+var ptag2=document.createElement("p")
+ptag2.innerText="BATCH :"+" "+ele.batch
+divtag1.append(ptag2)
+
+
+
+var ptag3=document.createElement("p")
+ptag3.innerText="UNIT :"+" "+ele.unit
+divtag1.append(ptag3)
+
+
+var inputtag=document.createElement("input")
+inputtag.setAttribute("type","submit")
+inputtag.setAttribute("value","Remove")
+inputtag.addEventListener("click",function(){
+
+    deletefun(ele,ind)
+})
+divtag1.append(inputtag)
+
+
+
+});
+    
+}
+
+
+
+
+
+
+
+var removearr=JSON.parse(localStorage.getItem("removearr"))||[]
+
+function deletefun(ele,ind){
+event.preventDefault()
+
+
+removearr.push(ele)
+localStorage.setItem("removedata",JSON.stringify(removearr))
+data.splice(ind,1)
+localStorage.setItem("detail",JSON.stringify(data))
+
+window.location.reload()
+
+
+}
+
+
+
+
+</script>

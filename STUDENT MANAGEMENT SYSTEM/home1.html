@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+      form{
+          width: 270px;
+          height: 500px;
+          color: white;
+         background-color: cyan;
+         margin: auto;
+         text-align: center;
+      }
+
+      h1{
+          text-align: center;
+      }
+      h2{
+        margin-bottom: 0%;
+         
+      }
+#navbar{
+display: flex;
+height: 30px;
+font-size: larger;
+justify-content: end;
+align-items: center;
+
+border: 1px gray solid;
+
+
+
+}      
+#navbar>div{
+    margin-right: 20px;
+    margin-left: 60px;
+    color: gray;
+}
+
+#submit{
+margin-top: 20px;
+width: 150px;
+height: 30px;
+
+}
+
+input{
+    width: 200px;
+    height: 25px;
+}
+
+a{
+    color: gray;
+}
+   </style>
+      
+
+</head>
+<body>
+   
+     <div id="navbar">
+         
+     
+   
+       <div><a href=home1.html> home</a></div>
+       <div><a href="dashboard.html">Dasboard</a> </div>
+        <div><a href="remove.html">Remove</a> </div>
+   
+
+
+    </div>
+
+
+
+
+
+
+    <form>
+        <h1>Student Detail</h1>
+      <h2>Name</h2> <input type="text" placeholder="Name" id="name"/></h2>      
+     <h2>Course   </h2> <input type="text" placeholder=" Course" id="course"/></h2>
+      <h2>Unit   </h2> <input type="text" placeholder="Unit" id="unit"/></h2> 
+        <h2>Image </h2><input type="url" placeholder="Image" id="image" /></h2>
+        <h2>Batch </h2><input type="text" placeholder="Batch" id="batch"/></h2>
+          <input type="submit" id="submit"/>
+    </form>
+</body>
+</html>
+
+<script>
+document.querySelector("form").addEventListener("submit",submitfun)
+
+function submitfun(){
+event.preventDefault()
+// console.log("hii")
+
+
+
+var arr=JSON.parse(localStorage.getItem("detail"))||[]
+
+var object={
+name:document.getElementById("name").value,
+course:document.getElementById("course").value,
+unit:document.getElementById("unit").value,
+image:document.getElementById("image").value,
+batch:"fw-web"+" "+document.getElementById("batch").value
+}
+
+arr.push(object)
+localStorage.setItem("detail",JSON.stringify(arr))
+console.log(arr)
+
+document.getElementById("name").value=""
+document.getElementById("course").value=""
+document.getElementById("unit").value=""
+document.getElementById("image").value=""
+document.getElementById("batch").value=""
+
+
+}
+
+
+
+
+
+
+
+
+</script>
