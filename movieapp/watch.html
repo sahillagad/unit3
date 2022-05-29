@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+      #box{
+           width: 500px;
+           height: 500px;
+           /* border: 1px red solid; */
+           box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+           margin: auto;
+          display: flex;
+          border-radius: 10px;
+      } 
+
+      img{
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      
+
+      }
+
+p,h2,h3{
+
+    padding-left: 10px;
+}
+
+
+
+</style>
+</head>
+<body>
+    <button id="back">Back</button>
+</body>
+</html>
+
+<script>
+var watch=JSON.parse(localStorage.getItem("watch"))
+console.log(watch)
+
+
+
+display(watch)
+
+function display(ele){
+
+var divtag=document.createElement("div")
+divtag.setAttribute("id","box")
+document.querySelector("body").append(divtag)
+
+
+
+
+var divtag1=document.createElement("div")
+divtag.append(divtag1)
+
+
+var imagetag1=document.createElement("img")
+imagetag1.setAttribute("src",ele.Poster)
+divtag.append(imagetag1)
+
+// 2
+
+var divtag2=document.createElement("div")
+divtag.append(divtag2)
+
+var h2tag=document.createElement("h2")
+h2tag.innerText="Title"+" "+ele.Title
+divtag2.append(h2tag)
+
+var h3tag=document.createElement("h3")
+h3tag.innerText="Year"+" "+ele.Year
+divtag2.append(h3tag)
+
+
+var ptag=document.createElement("p")
+ptag.innerText="Type"+" "+ele.Type
+divtag2.append(ptag)
+
+
+async function rate(){
+var rating=ele.imdbID
+var url1=`http://www.omdbapi.com/?i=${rating}&apikey=acbb71dc`
+
+var a=await fetch(url1)
+var data1=await a.json()
+// console.log(data1.imdbRating)
+var output=(rateresult(data1.imdbRating))
+}
+
+function rateresult(imdbID){
+
+var rate=imdbID
+var ptag1=document.createElement("p")
+ptag1.innerText="imdbID"+" "+rate
+divtag2.append(ptag1)
+return rate
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+rate()
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+document.querySelector("#back").addEventListener("click",myfunction)
+
+
+function myfunction(){
+
+window.location.href="./index.html"
+}
+
+
+
+
+
+
+
+
+
+</script>

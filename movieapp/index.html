@@ -1,0 +1,458 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+input{
+
+
+    width: 300px;
+    margin-top: 30px;
+
+    border: none;
+    border-bottom: 1px solid blue;
+    color: black;
+    /* margin-left: 200px; */
+    position: relative;
+
+    
+}
+
+
+#movie{
+    height: 400px;
+     width: 310px;
+     border-top: none;
+     position: absolute;   
+   overflow: hidden;
+   
+
+
+
+}
+
+#box{
+width: 300px;
+height: 60px;
+border: 1px solid black;
+display: flex;
+background-color:darkslategray;
+}
+
+#box>div:nth-child(2){
+align-items: center;
+
+}
+
+#image{
+    width: 80px;
+    height: 60px;
+
+}
+
+p{
+   font-size: 13px;
+   color: white;
+   margin-top: 7px;
+   margin-bottom: 0%;
+   padding-left:10px ;
+
+}
+
+
+
+
+#nav{
+width: 100%;
+height: 70px;
+display: flex;
+justify-content: space-between;
+
+}
+
+#nav>div>img{
+width: 150px;
+height: 70px;
+margin-left: 100px;
+}
+
+
+#manu{
+
+display: flex;
+align-items: center;
+}
+#manu>div>h1{
+
+    margin-left: 20px;
+   font-size: medium;
+   /* border: 1px solid red; */
+   
+}
+#kids>h1{
+    color: goldenrod;
+}
+
+#sub{
+   display: flex;
+  width: 300px;
+align-items: center;
+justify-content: space-evenly;
+
+}
+#sub>button{
+
+    padding:7px ;
+    /* padding-right: 10px; */
+    background-color:hsl(208,81%,57%) ;
+    color:white;
+    border: none;
+    border-radius: 5px;
+
+}
+
+#back>img{
+width: 100%;
+height: 300px;
+margin-bottom: 20px;
+
+}
+
+#container{
+    width: 80%;
+margin: auto;    
+display: grid;
+grid-template-columns: repeat(5,200px);
+grid-template-rows:repeat(4,350px) ;
+gap: 20px;
+
+
+
+}
+
+#container>div>img{
+width: 200px;
+height: 60%;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+
+
+}
+#container>div{
+    /* border: 1px green solid; */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    border-radius: 10px;
+}
+
+#container>div>h5{
+margin-top: 3px;
+color: gray;
+margin-bottom: 3px;
+padding-left: 5px;
+
+}
+#container>div>h4{
+margin-top: 5px;
+padding: 5px;
+
+
+
+}
+
+
+</style>
+</head>
+<body>
+
+<div id="nav">
+<!-- 0 -->
+<div>
+    <img src="https://www.bing.com/th?id=OIP.OAKJuDAYsvpifCApfXZEvwHaD4&w=345&h=181&c=8&rs=1&qlt=90&o=6&dpr=1.38&pid=3.1&rm=2" alt="disany"/>
+</div>
+
+<!-- 1 -->
+<div id="manu">
+    <div><h1>TV</h1></div>
+    <div><h1>Movies</h1></div>
+    <div><h1>Sports</h1></div>
+    <div><h1>Disney+</h1></div>
+    <div id="kids"><h1>Kids</h1></div>
+
+</div>
+<!-- 2 -->
+<div>
+<input oninput="debouncefunction(main,1000)" type="text" placeholder="Name movie" id="query"/>
+<div id="movie"></div>
+</div>
+<div id="sub">
+    <button>SUBSCRIBE</button>
+    <h2>LOGIN</h2>    
+
+
+</div>
+
+        
+
+
+</div>
+
+
+
+
+<!-- image -->
+<div id="back">
+<img src="https://img1.hotstarext.com/image/upload/f_auto,t_web_m_1x/sources/r1/cms/prod/5210/1165210-h-a72a0a95461e" alt="image"/>
+
+
+
+</div>
+
+
+
+<div id="container"></div>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+</body>
+</html>
+
+
+<script>
+
+
+async function main(){
+var query=document.querySelector("#query").value
+// console.log(query)
+var response=searchmovie(query)
+// console.log(response)
+var data=await response
+//  console.log(data)
+appenedmovie(data)
+}
+
+async function searchmovie(query){
+// console.log(query)
+try{
+    var url=`http://www.omdbapi.com/?s=${query}&apikey=acbb71dc`
+    var res= await fetch(url)
+    var data=await res.json()
+         return(data.Search)
+
+}
+catch(err){
+console.log(err)
+}
+}
+
+
+
+function appenedmovie(data){
+
+document.querySelector("#movie").innerHTML=null
+if(data==undefined){
+
+    return false
+
+}
+
+data.forEach(function(ele){
+
+var divtag=document.createElement("div")
+divtag.setAttribute("id","box")
+divtag.addEventListener("click",function(){
+
+
+    watchfun(ele)
+})
+document.querySelector("#movie").append(divtag)
+
+// var imgtag=document.createElement("img")
+// imgtag.setAttribute("src")
+
+var divtag1=document.createElement("div")
+divtag.append(divtag1)
+
+
+var imagetag1=document.createElement("img")
+imagetag1.setAttribute("src",ele.Poster)
+imagetag1.setAttribute("id","image")
+divtag1.append(imagetag1)
+    
+
+
+var divtag2=document.createElement("div")
+divtag.append(divtag2)
+
+var ptag=document.createElement("p")
+ptag.innerText="Title"+" "+ele.Title
+divtag2.append(ptag)
+
+var ptag1=document.createElement("p")
+ptag1.innerText="Year"+" "+ele.Year
+divtag2.append(ptag1)
+
+
+
+
+});
+
+
+}
+
+
+function watchfun(ele){
+
+console.log(ele)
+localStorage.setItem("watch",JSON.stringify(ele))
+window.location.href="watch.html"
+}
+
+
+
+
+
+
+
+async function result1(){
+
+var url="https://api.themoviedb.org/4/list/1?api_key=7e67961024ef444158e21e7ab32b3f5c"
+
+try{
+var res= await fetch(url)
+var data=await res.json()
+console.log(data.results)
+append(data.results)
+
+}
+
+catch(err){
+
+console.log(err)
+
+}
+
+}
+
+result1()
+
+
+function append(data){
+
+data.forEach(function(ele){
+
+var divtag=document.createElement("div")
+document.querySelector("#container").append(divtag)
+
+
+var image=document.createElement("img")
+image.setAttribute("src",`https://image.tmdb.org/t/p/w500${ele.poster_path}`)
+divtag.append(image)
+
+
+var ptag1=document.createElement("h4")
+ptag1.innerText="Title:"+""+ele.title
+divtag.append(ptag1)
+
+
+var ptag2=document.createElement("h5")
+ptag2.innerText="lang :"+" "+ele.original_language
+divtag.append(ptag2)
+
+var ptag3=document.createElement("h5")
+ptag3.innerText="release_date :"+" "+ele.release_date
+divtag.append(ptag3)
+
+
+
+
+var ptag4=document.createElement("h5")
+ptag4.innerText="Imdb :"+" "+ele.vote_average
+divtag.append(ptag4)
+
+
+
+
+})
+
+
+
+
+
+
+}
+
+
+
+
+
+var id;
+function debouncefunction(func,delay){
+if(id){
+
+clearTimeout(id)
+
+}
+id=setTimeout(function(){
+
+func()
+
+
+
+
+},delay)
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
